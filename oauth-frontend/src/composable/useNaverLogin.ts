@@ -1,7 +1,7 @@
 import { NAVER_ENV } from "@/api/naver-login"
 import { ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
-import { OauthController, OauthType, type GetTokenResponse, type NaverLoginResponse } from "@/controller/login-controller"
+import { OauthController, OauthType } from "@/controller/login-controller"
 
 const loginLink =
     `${NAVER_ENV.NAVER_LOGIN_API_HOST}/oauth2.0/authorize` +
@@ -34,7 +34,7 @@ export function useNaverLogin() {
             code: route.query.code as string,
             error: route.query.error as string
         }
-        
+
         try {
             if (response.state != null && response.code != null && response.error == null) {
                 await controller.oauthLogin(response.code, OauthType.NAVER)
