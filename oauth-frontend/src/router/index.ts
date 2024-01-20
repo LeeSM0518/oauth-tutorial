@@ -6,12 +6,12 @@ const router = createRouter({
         {
             path: '/',
             name: 'home',
-            component: import("@/components/Home.vue")
+            component: import("@/pages/Home.vue")
         },
         {
             path: '/naver/login',
             name: 'naver',
-            component: import("@/components/NaverLogin.vue")
+            component: import("@/pages/NaverLogin.vue")
         }
     ]
 })
