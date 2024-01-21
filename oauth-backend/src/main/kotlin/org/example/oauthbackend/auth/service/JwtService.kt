@@ -37,14 +37,13 @@ class JwtService(
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
-    private val accessTokenSecretKey = jwtConfigProperties.accessTokenSecretKey.toByteArray()
-    private val refreshTokenSecretKey = jwtConfigProperties.refreshTokenSecretKey.toByteArray()
+    private val secretKey = jwtConfigProperties.secretKey.toByteArray()
     private val accessTokenExpirationHour = jwtConfigProperties.accessTokenExpirationHour.toLong()
     private val refreshTokenExpirationHour = jwtConfigProperties.refreshTokenExpirationHour.toLong()
 
     suspend fun createAccessToken(memberId: UUID): AccessToken =
         runCatching {
-            createToken(memberId, accessTokenExpirationHour, accessTokenSecretKey)
+            createToken(memberId, accessTokenExpirationHour)
         }.getOrElse {
             logger.error(CREATE_ACCESS_TOKEN_EXCEPTION)
             logger.error(it.stackTraceToString())
@@ -54,7 +53,7 @@ class JwtService(
     @Transactional
     suspend fun createRefreshToken(memberId: UUID): RefreshToken =
         runCatching {
-            val token = createToken(memberId, refreshTokenExpirationHour, refreshTokenSecretKey)
+            val token = createToken(memberId, refreshTokenExpirationHour)
             refreshTokenRepository
                 .findByMemberId(memberId)
                 .let { refreshToken ->
@@ -72,11 +71,11 @@ class JwtService(
             throw CreateRefreshTokenException()
         }
 
-    suspend fun validateAccessToken(token: AccessToken): TokenSubject = validateToken(accessTokenSecretKey, token)
+    suspend fun validateAccessToken(token: AccessToken): TokenSubject = validateToken(secretKey, token)
 
     suspend fun validateRefreshToken(token: RefreshToken): TokenSubject =
         runCatching {
-            val tokenSubject = validateToken(refreshTokenSecretKey, token)
+            val tokenSubject = validateToken(secretKey, token)
             validateRefreshToken(tokenSubject, token)
             tokenSubject
         }.getOrElse { exception ->
@@ -126,7 +125,7 @@ class JwtService(
             }
         }
 
-    private fun createToken(memberId: UUID, expirationHour: Long, secretKey: ByteArray): String {
+    private fun createToken(memberId: UUID, expirationHour: Long): String {
         val now = LocalDateTime.now()
         return Jwts
             .builder()

@@ -8,8 +8,7 @@ spring:
     password: ${DATABASE_PASSWORD:postgres}
 
 jwt:
-  accessTokenSecretKey:
-  refreshTokenSecretKey:
+  secretKey:
   accessTokenExpirationHour: 1
   refreshTokenExpirationHour: 720
 

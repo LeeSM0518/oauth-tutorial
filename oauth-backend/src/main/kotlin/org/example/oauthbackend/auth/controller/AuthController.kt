@@ -4,6 +4,7 @@ import jakarta.validation.Valid
 import org.example.oauthbackend.auth.domain.TokenGroup
 import org.example.oauthbackend.auth.controller.dto.LoginRequest
 import org.example.oauthbackend.auth.controller.dto.LoginResponse
+import org.example.oauthbackend.auth.controller.dto.LogoutRequest
 import org.example.oauthbackend.auth.controller.dto.LogoutResponse
 import org.example.oauthbackend.auth.controller.dto.ReissueRequest
 import org.example.oauthbackend.auth.controller.dto.ReissueResponse
@@ -44,10 +45,10 @@ class AuthController(
     @Transactional
     @PostMapping("/logout")
     suspend fun logout(
-        @RequestHeader(AUTHORIZATION)
-        authorization: String
+        @RequestBody @Valid
+        request: LogoutRequest
     ): LogoutResponse {
-        val memberId = tokenService.getMemberId(Authorization(authorization))
+        val memberId = tokenService.getMemberId(Authorization(request.refreshToken))
         tokenService.expireRefreshToken(memberId)
         return LogoutResponse()
     }

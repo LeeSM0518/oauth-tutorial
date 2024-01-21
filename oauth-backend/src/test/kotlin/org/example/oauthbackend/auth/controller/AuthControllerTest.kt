@@ -2,6 +2,7 @@ package org.example.oauthbackend.auth.controller
 
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
+import org.example.oauthbackend.auth.controller.dto.LogoutRequest
 import org.example.oauthbackend.auth.controller.dto.ReissueRequest
 import org.example.oauthbackend.auth.controller.dto.ReissueResponse
 import org.example.oauthbackend.auth.repository.RefreshTokenRepository
@@ -41,14 +42,13 @@ internal class AuthControllerTest @Autowired constructor(
 
     @Test
     fun `로그아웃을 할 수 있다`(): Unit = runBlocking {
-        val accessToken = jwtService.createAccessToken(expectedMember.id!!)
-        jwtService.createRefreshToken(expectedMember.id!!)
+        val refreshToken = jwtService.createRefreshToken(expectedMember.id!!)
 
         webTestClient
             .post()
             .uri("/api/auth/logout")
             .accept(MediaType.APPLICATION_JSON)
-            .header(AUTHORIZATION, "Bearer $accessToken")
+            .bodyValue(LogoutRequest(refreshToken))
             .exchange()
             .expectStatus().isOk
     }
