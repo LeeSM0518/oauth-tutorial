@@ -1,5 +1,5 @@
 import { useRoute, useRouter } from "vue-router"
-import { OauthController, OauthType } from "@/controller/login-controller"
+import { AuthController, OauthType } from "@/controller/auth-controller"
 import { AxiosError } from "axios"
 
 const NAVER_ENV = {
@@ -20,7 +20,7 @@ const loginLink =
 export function useNaverLogin() {
     const router = useRouter()
     const route = useRoute()
-    const controller = new OauthController
+    const controller = new AuthController
 
     function openNaverLoginPage(): void {
         window.location.href = loginLink
@@ -39,7 +39,7 @@ export function useNaverLogin() {
 
         try {
             if (response.state != null && response.code != null && response.error == null) {
-                await controller.oauthLogin(response.code, OauthType.NAVER)
+                await controller.login(response.code, OauthType.NAVER)
                 router.push({ path: "/" })
             }
         } catch (error) {

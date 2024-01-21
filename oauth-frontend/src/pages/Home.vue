@@ -1,5 +1,5 @@
 <template>
-  <logout-button v-if="isAuthorized" />
+  <logout-button v-if="isAuthorizedMember && isAuthorizedTokenGroup" />
   <login-button v-else />
 </template>
 
@@ -9,7 +9,10 @@ import LogoutButton from "@/components/LogoutButton.vue"
 
 import { storeToRefs } from "pinia";
 import { useMemberStore } from "@/stores/member";
-const { isAuthorized } = storeToRefs(useMemberStore())
+import { useTokenGroupStore } from "@/stores/token-group";
+
+const { isAuthorizedMember } = storeToRefs(useMemberStore())
+const { isAuthorizedTokenGroup } = storeToRefs(useTokenGroupStore())
 </script>
 
 <style scoped></style>

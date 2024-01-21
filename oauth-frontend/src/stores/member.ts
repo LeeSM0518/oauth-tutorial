@@ -7,7 +7,7 @@ export const memberStorage = new Storage<Member>("member")
 
 export const useMemberStore = defineStore("member", () => {
     const member = ref(memberStorage.get())
-    const isAuthorized = computed(() => !!member.value)
+    const isAuthorizedMember = computed(() => !!member.value)
 
     async function updateMember(memberData?: Member | null) {
         if (memberData) {
@@ -20,8 +20,8 @@ export const useMemberStore = defineStore("member", () => {
     }
 
     return {
-        user: member,
-        isAuthorized,
+        member,
+        isAuthorizedMember,
         updateMember
     }
 })
