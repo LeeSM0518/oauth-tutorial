@@ -85,6 +85,10 @@ class JwtService(
             throw exception
         }
 
+    suspend fun expireRefreshToken(memberId: UUID) {
+        refreshTokenRepository.deleteByMemberId(memberId)
+    }
+
     private suspend fun validateRefreshToken(
         tokenSubject: TokenSubject,
         token: RefreshToken

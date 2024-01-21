@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository
 @Repository
 interface RefreshTokenRepository : CoroutineCrudRepository<RefreshTokenEntity, UUID> {
     suspend fun findByMemberId(memberId: UUID): RefreshTokenEntity?
+
+    suspend fun deleteByMemberId(memberId: UUID)
 }

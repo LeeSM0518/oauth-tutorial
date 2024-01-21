@@ -25,6 +25,10 @@ class TokenService(
         return TokenGroup(reissuedAccessToken, reissuedRefreshToken)
     }
 
+    suspend fun expireRefreshToken(memberId: UUID) {
+        jwtService.expireRefreshToken(memberId)
+    }
+
     suspend fun getMemberId(authorization: Authorization): UUID =
         jwtService
             .validateAccessToken(authorization.accessToken)
