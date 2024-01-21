@@ -2,6 +2,7 @@
 
 interface ImportMetaEnv {
     VITE_BASE_URL: string,
+    VITE_BACKEND_AUTH_URL: string,
     VITE_NAVER_LOGIN_API_HOST: string,
     VITE_NAVER_LOGIN_URL: string,
     VITE_NAVER_TOKEN_URL: string,

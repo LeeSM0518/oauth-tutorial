@@ -1,21 +1,23 @@
 import type { Member } from "@/domain/member";
 import { NaverLoginApi } from "@/api/naver-login";
+import type { TokenGroup } from "@/domain/token-group";
+import { OauthLoginApi } from "@/api/oauth-login";
 
 export class OauthController {
     private naverLoginApi = new NaverLoginApi
+    private oauthLoginApi = new OauthLoginApi
 
     async oauthLogin(authorizationCode: string, type: OauthType): Promise<OauthLoginResponse> {
-        let email: Email
-        switch (type) {
-            case OauthType.NAVER:
-                email = await this.naverLogin(authorizationCode)
-                break
-        }
+        await this.oauthLoginApi.login(authorizationCode)
         return {
             member: {
-                email: email,
+                email: "email",
                 id: "efed1040-279b-420c-ad16-fa3d176dcdc1",
                 nickname: "nickname"
+            },
+            tokenGroup: {
+                accessToken: "accessToken",
+                refreshToken: "refreshToken"
             }
         }
     }
@@ -45,5 +47,6 @@ interface NaverLoginResponse {
 }
 
 export interface OauthLoginResponse {
-    member: Member
+    member: Member,
+    tokenGroup: TokenGroup
 }

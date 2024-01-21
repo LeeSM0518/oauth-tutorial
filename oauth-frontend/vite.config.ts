@@ -24,6 +24,10 @@ export default defineConfig({
         target: "https://openapi.naver.com",
         changeOrigin: true,
         rewrite: path => path.replace(/^\/oauth\/naver\/user/, "/v1/nid/me")
+      },
+      "/api": {
+        target: "http://localhost:8081",
+        changeOrigin: true
       }
     }
   }
