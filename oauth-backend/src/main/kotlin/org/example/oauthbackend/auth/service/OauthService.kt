@@ -1,6 +1,6 @@
 package org.example.oauthbackend.auth.service
 
-import org.example.oauthbackend.auth.controller.dto.OauthLoginRequest
+import org.example.oauthbackend.auth.controller.dto.LoginRequest
 import org.example.oauthbackend.auth.domain.OauthType
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -11,7 +11,7 @@ class OauthService(
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
-    suspend fun getEmail(request: OauthLoginRequest): String =
+    suspend fun getEmail(request: LoginRequest): String =
         runCatching {
             when (request.oauthType) {
                 OauthType.NAVER -> naverOauthService.getEmail(request)
