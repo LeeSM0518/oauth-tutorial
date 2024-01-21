@@ -1,0 +1,23 @@
+server:
+  port: 8081
+
+spring:
+  r2dbc:
+    url: ${DATABASE_URL:r2dbc:postgresql://localhost:15432/oauthdb}
+    username: ${DATABASE_USERNAME:postgres}
+    password: ${DATABASE_PASSWORD:postgres}
+
+jwt:
+  accessTokenSecretKey:
+  refreshTokenSecretKey:
+  accessTokenExpirationHour: 1
+  refreshTokenExpirationHour: 720
+
+naver:
+  oauthHost: https://nid.naver.com
+  profileHost: https://openapi.naver.com
+  tokenUrl: /oauth2.0/token
+  profileUrl: /v1/nid/me
+  clientId:
+  clientSecret:
+  state:
