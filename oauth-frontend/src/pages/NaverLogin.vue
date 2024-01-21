@@ -1,7 +1,5 @@
 <template>
   <div>
-    <div>{{ loginResultMessage.message }}</div>
-    <button @click="routeHome">홈화면으로 이동</button>
   </div>
 </template>
 
@@ -9,7 +7,7 @@
 import { onMounted } from "vue";
 import { useNaverLogin } from "@/composable/useNaverLogin"
 
-const { loginResultMessage, receiveNaverLoginResponse, routeHome } = useNaverLogin()
+const { receiveNaverLoginResponse } = useNaverLogin()
 
 onMounted(async () => {
   await receiveNaverLoginResponse()

@@ -1,6 +1,6 @@
-import {computed, ref} from "vue"
-import {defineStore} from "pinia";
-import type {Member} from "@/domain/member";
+import { computed, ref } from "vue"
+import { defineStore } from "pinia";
+import type { Member } from "@/domain/member";
 import Storage from "@/utils/storage";
 
 export const memberStorage = new Storage<Member>("member")

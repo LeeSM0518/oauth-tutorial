@@ -1,4 +1,3 @@
-import { ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { OauthController, OauthType } from "@/controller/login-controller"
 import { AxiosError } from "axios"
@@ -23,10 +22,6 @@ export function useNaverLogin() {
     const route = useRoute()
     const controller = new OauthController
 
-    const loginResultMessage = ref({
-        message: ""
-    })
-
     function openNaverLoginPage(): void {
         window.location.href = loginLink
     }
@@ -45,9 +40,7 @@ export function useNaverLogin() {
         try {
             if (response.state != null && response.code != null && response.error == null) {
                 await controller.oauthLogin(response.code, OauthType.NAVER)
-                loginResultMessage.value.message = "네이버 로그인 성공"
-            } else {
-                loginResultMessage.value.message = "네이버 로그인 실패"
+                router.push({ path: "/" })
             }
         } catch (error) {
             let message
@@ -55,14 +48,11 @@ export function useNaverLogin() {
                 console.log("회원가입 필요")
             }
             else message = String(error)
-            loginResultMessage.value.message = `네이버 로그인 실패 (${message})`
-            setTimeout(() => router.push({ path: "/" }), 3000)
             reportError({ message })
         }
     }
 
     return {
-        loginResultMessage,
         routeHome,
         openNaverLoginPage,
         receiveNaverLoginResponse

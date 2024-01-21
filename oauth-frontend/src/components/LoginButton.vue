@@ -43,5 +43,4 @@ const { openNaverLoginPage } = useNaverLogin()
 const dialog = ref(false)
 </script>
 
-<style>
-</style>
+<style></style>
