@@ -1,11 +1,9 @@
 package org.example.oauthbackend.auth.controller
 
-import java.util.UUID
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
 import org.example.oauthbackend.auth.controller.dto.ReissueRequest
 import org.example.oauthbackend.auth.controller.dto.ReissueResponse
-import org.example.oauthbackend.auth.entity.RefreshTokenEntity
 import org.example.oauthbackend.auth.repository.RefreshTokenRepository
 import org.example.oauthbackend.auth.service.JwtService
 import org.example.oauthbackend.config.IntegrationTest
