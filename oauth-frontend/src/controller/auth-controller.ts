@@ -15,6 +15,7 @@ export class AuthController {
         const response: LoginResponse = await this.authApi.login(authorizationCode, type)
         updateMember(response.member)
         updateTokenGroup(response.tokenGroup)
+        
         return response
     }
 
