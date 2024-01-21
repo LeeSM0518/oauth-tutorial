@@ -1,6 +1,7 @@
 import { ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { OauthController, OauthType } from "@/controller/login-controller"
+import { AxiosError } from "axios"
 
 const NAVER_ENV = {
     NAVER_LOGIN_API_HOST: import.meta.env.VITE_NAVER_LOGIN_API_HOST,
@@ -50,7 +51,9 @@ export function useNaverLogin() {
             }
         } catch (error) {
             let message
-            if (error instanceof Error) message = error.message
+            if (error instanceof AxiosError && error?.response?.data.status == 404) {
+                console.log("회원가입 필요")
+            }
             else message = String(error)
             loginResultMessage.value.message = `네이버 로그인 실패 (${message})`
             setTimeout(() => router.push({ path: "/" }), 3000)

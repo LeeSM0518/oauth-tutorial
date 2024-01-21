@@ -1,13 +1,9 @@
 <template>
-  <div>
-    <button @click="openNaverLoginPage">네이버 로그인</button>
-  </div>
+  <login-dialog/>
 </template>
 
 <script setup lang="ts">
-import { useNaverLogin } from "@/composable/useNaverLogin"
-
-const { openNaverLoginPage } = useNaverLogin()
+import LoginDialog from "@/components/LoginDialog.vue"
 </script>
 
 <style scoped>

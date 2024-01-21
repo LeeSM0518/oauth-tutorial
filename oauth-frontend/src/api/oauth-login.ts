@@ -1,4 +1,4 @@
-import type { AxiosInstance, AxiosResponse } from "axios";
+import { type AxiosInstance, type AxiosResponse } from "axios";
 import { createApi } from ".";
 import type { OauthLoginResponse, OauthType } from "@/controller/login-controller";
 
@@ -15,7 +15,6 @@ export class OauthLoginApi {
                 authorizationCode: authorizationCode,
                 oauthType: type
             })
-
         return response.data
     }
 }
