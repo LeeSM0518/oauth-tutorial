@@ -5,6 +5,8 @@ import org.example.oauthbackend.auth.domain.TokenGroup
 import org.example.oauthbackend.auth.controller.dto.LoginRequest
 import org.example.oauthbackend.auth.controller.dto.LoginResponse
 import org.example.oauthbackend.auth.controller.dto.LogoutResponse
+import org.example.oauthbackend.auth.controller.dto.ReissueRequest
+import org.example.oauthbackend.auth.controller.dto.ReissueResponse
 import org.example.oauthbackend.auth.domain.Authorization
 import org.example.oauthbackend.auth.service.OauthService
 import org.example.oauthbackend.auth.service.TokenService
@@ -48,5 +50,14 @@ class AuthController(
         val memberId = tokenService.getMemberId(Authorization(authorization))
         tokenService.expireRefreshToken(memberId)
         return LogoutResponse()
+    }
+
+    @PostMapping("/reissue")
+    suspend fun reissue(
+        @RequestBody @Valid
+        request: ReissueRequest
+    ): ReissueResponse {
+        val tokenGroup = tokenService.reissueTokenGroup(request.refreshToken)
+        return ReissueResponse(tokenGroup)
     }
 }

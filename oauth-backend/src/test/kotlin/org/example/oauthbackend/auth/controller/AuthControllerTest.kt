@@ -2,6 +2,9 @@ package org.example.oauthbackend.auth.controller
 
 import java.util.UUID
 import kotlinx.coroutines.runBlocking
+import org.assertj.core.api.Assertions.assertThat
+import org.example.oauthbackend.auth.controller.dto.ReissueRequest
+import org.example.oauthbackend.auth.controller.dto.ReissueResponse
 import org.example.oauthbackend.auth.entity.RefreshTokenEntity
 import org.example.oauthbackend.auth.repository.RefreshTokenRepository
 import org.example.oauthbackend.auth.service.JwtService
@@ -15,22 +18,21 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.http.HttpHeaders.AUTHORIZATION
 import org.springframework.http.MediaType
 import org.springframework.test.web.reactive.server.WebTestClient
+import org.springframework.test.web.reactive.server.expectBody
 
 @IntegrationTest
 internal class AuthControllerTest @Autowired constructor(
     private val webTestClient: WebTestClient,
     private val memberRepository: MemberRepository,
     private val refreshTokenRepository: RefreshTokenRepository,
-    private val jwtService: JwtService
+    private val jwtService: JwtService,
 ) {
 
-    lateinit var memberId: UUID
+    lateinit var expectedMember: MemberEntity
 
     @BeforeEach
     fun setUp(): Unit = runBlocking {
-        val member = memberRepository.save(MemberEntity(email = "email", nickname = "nickname"))
-        memberId = member.id!!
-        refreshTokenRepository.save(RefreshTokenEntity(memberId = memberId, token = "token"))
+        expectedMember = memberRepository.save(MemberEntity(email = "email", nickname = "nickname"))
     }
 
     @AfterEach
@@ -41,7 +43,8 @@ internal class AuthControllerTest @Autowired constructor(
 
     @Test
     fun `로그아웃을 할 수 있다`(): Unit = runBlocking {
-        val accessToken = jwtService.createAccessToken(memberId)
+        val accessToken = jwtService.createAccessToken(expectedMember.id!!)
+        jwtService.createRefreshToken(expectedMember.id!!)
 
         webTestClient
             .post()
@@ -50,6 +53,28 @@ internal class AuthControllerTest @Autowired constructor(
             .header(AUTHORIZATION, "Bearer $accessToken")
             .exchange()
             .expectStatus().isOk
+    }
+
+    @Test
+    fun `토큰을 재발급 받을 수 있다`(): Unit = runBlocking {
+        val expectedRefreshToken = jwtService.createRefreshToken(expectedMember.id!!)
+
+        val refreshToken = webTestClient
+            .post()
+            .uri("/api/auth/reissue")
+            .contentType(MediaType.APPLICATION_JSON)
+            .accept(MediaType.APPLICATION_JSON)
+            .bodyValue(ReissueRequest(expectedRefreshToken))
+            .exchange()
+            .expectStatus().isOk
+            .expectBody<ReissueResponse>()
+            .returnResult()
+            .responseBody!!
+            .tokenGroup
+            .refreshToken
+
+        val refreshTokenEntity = refreshTokenRepository.findByMemberId(expectedMember.id!!)!!
+        assertThat(refreshTokenEntity.token).isEqualTo(refreshToken)
     }
 
 }
