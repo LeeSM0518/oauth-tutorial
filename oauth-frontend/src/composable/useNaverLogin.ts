@@ -1,7 +1,13 @@
-import { NAVER_ENV } from "@/api/naver-login"
 import { ref } from "vue"
 import { useRoute, useRouter } from "vue-router"
 import { OauthController, OauthType } from "@/controller/login-controller"
+
+const NAVER_ENV = {
+    NAVER_LOGIN_API_HOST: import.meta.env.VITE_NAVER_LOGIN_API_HOST,
+    NAVER_CLIENT_ID: import.meta.env.VITE_NAVER_CLIENT_ID,
+    NAVER_STATE: import.meta.env.VITE_NAVER_STATE,
+    NAVER_REDIRECT_URL: import.meta.env.VITE_NAVER_REDIRECT_URL
+}
 
 const loginLink =
     `${NAVER_ENV.NAVER_LOGIN_API_HOST}/oauth2.0/authorize` +
