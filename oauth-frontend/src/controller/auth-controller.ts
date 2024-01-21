@@ -1,6 +1,6 @@
 import type { Member } from "@/domain/member";
 import type { TokenGroup } from "@/domain/token-group";
-import { AuthApi } from "@/api/auth-login";
+import { AuthApi } from "@/api/auth-api";
 import { useMemberStore } from "@/stores/member";
 import { useTokenGroupStore } from "@/stores/token-group";
 
