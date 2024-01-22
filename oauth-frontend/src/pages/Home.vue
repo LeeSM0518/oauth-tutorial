@@ -1,12 +1,10 @@
 <template>
-  <v-container class="fill-height">
-    <v-row justify="center">
-      <v-col cols="auto">
-        <logout-button v-if="isAuthorizedMember && isAuthorizedTokenGroup" />
-        <login-button v-else />
-      </v-col>
-    </v-row>
-  </v-container>
+  <v-row justify="center">
+    <v-col cols="auto">
+      <logout-button v-if="isAuthorizedMember && isAuthorizedTokenGroup" />
+      <login-button v-else />
+    </v-col>
+  </v-row>
 </template>
 
 <script setup lang="ts">
