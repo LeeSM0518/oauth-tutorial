@@ -12,6 +12,11 @@ const router = createRouter({
             path: '/naver/login',
             name: 'naver',
             component: import("@/pages/NaverLogin.vue")
+        },
+        {
+            path: '/signup',
+            name: 'signup',
+            component: import("@/pages/SignUp.vue")
         }
     ]
 })

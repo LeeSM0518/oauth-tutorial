@@ -45,7 +45,7 @@ export function useNaverLogin() {
         } catch (error) {
             let message
             if (error instanceof AxiosError && error?.response?.data.status == 404) {
-                console.log("회원가입 필요")
+                router.push({ path: "/signup" })
             }
             else message = String(error)
             reportError({ message })
