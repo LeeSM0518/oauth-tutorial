@@ -1,11 +1,9 @@
 <template>
-    <v-row justify="center">
-        <v-btn @click="logout" color="gray">로그아웃</v-btn>
-    </v-row>
+  <v-btn @click="logout" color="gray">로그아웃</v-btn>
 </template>
 
 <script setup lang="ts">
-import { useLogout } from '@/composable/useLogout';
+import { useLogout } from '@/composable/useLogout'
 
 const { logout } = useLogout()
 </script>

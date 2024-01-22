@@ -1,5 +1,5 @@
 import { type AxiosInstance, type AxiosResponse } from "axios";
-import { createApi, type HttpHeader } from ".";
+import { createApi } from ".";
 import type { LoginResponse, LogoutResponse, OauthType } from "@/controller/auth-controller";
 
 const BACKEND_ENV = {
