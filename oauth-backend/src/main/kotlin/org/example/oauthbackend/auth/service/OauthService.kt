@@ -1,6 +1,7 @@
 package org.example.oauthbackend.auth.service
 
 import org.example.oauthbackend.auth.controller.dto.LoginRequest
+import org.example.oauthbackend.auth.domain.OauthInfo
 import org.example.oauthbackend.auth.domain.OauthType
 import org.slf4j.LoggerFactory
 import org.springframework.stereotype.Service
@@ -11,10 +12,10 @@ class OauthService(
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
-    suspend fun getEmail(request: LoginRequest): String =
+    suspend fun getOauthInfo(request: LoginRequest): OauthInfo =
         runCatching {
             when (request.oauthType) {
-                OauthType.NAVER -> naverOauthService.getEmail(request)
+                OauthType.NAVER -> OauthInfo(oauthId = naverOauthService.getOauthId(request), oauthType = OauthType.NAVER)
             }
         }.getOrElse { exception ->
             logger.error("OAuth 인증을 실패했습니다.")

@@ -10,5 +10,5 @@ import org.springframework.web.bind.annotation.RequestMethod
 interface NaverProfileClient {
 
     @RequestMapping(method = [RequestMethod.GET], value = ["\${naver.profileUrl}"])
-    fun getEmail(@RequestHeader("Authorization") token: String): GetProfileResponse
+    fun getOauthId(@RequestHeader("Authorization") token: String): GetProfileResponse
 }

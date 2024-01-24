@@ -13,7 +13,6 @@ data class MemberEntity(
     @Column("member_id")
     @get:JvmName("memberId")
     val id: UUID? = null,
-    val email: String,
     val nickname: String,
     val registeredDate: Instant = Instant.now(),
     val modifiedDate: Instant = registeredDate

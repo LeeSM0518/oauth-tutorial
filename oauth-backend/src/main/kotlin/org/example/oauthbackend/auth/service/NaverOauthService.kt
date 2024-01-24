@@ -7,6 +7,7 @@ import org.example.oauthbackend.auth.config.NaverOauthProperties
 import org.example.oauthbackend.auth.controller.dto.LoginRequest
 import org.example.oauthbackend.auth.exception.NAVER_OAUTH_LOGIN_FAIL_EXCEPTION
 import org.example.oauthbackend.auth.exception.OauthLoginFailException
+import org.example.oauthbackend.member.entity.OauthId
 import org.springframework.stereotype.Service
 
 @Service
@@ -16,12 +17,10 @@ class NaverOauthService(
     private val naverOauthProperties: NaverOauthProperties,
 ) {
 
-    fun getEmail(request: LoginRequest): String = getEmail(getToken(request))
+    fun getOauthId(request: LoginRequest): OauthId = getOauthId(getToken(request))
 
-    private fun getEmail(token: String): String =
-        naverProfileClient
-            .getEmail(token)
-            .email
+    private fun getOauthId(token: String): OauthId =
+        naverProfileClient.getOauthId(token).profile?.id
             ?: throw OauthLoginFailException(NAVER_OAUTH_LOGIN_FAIL_EXCEPTION)
 
     private fun getToken(request: LoginRequest): String =

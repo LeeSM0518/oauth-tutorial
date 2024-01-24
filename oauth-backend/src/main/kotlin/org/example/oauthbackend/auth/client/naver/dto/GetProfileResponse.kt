@@ -11,8 +11,6 @@ data class GetProfileResponse(
     val profile: Profile?,
 ) {
 
-    val email: String? = this.profile?.email
-
     data class Profile(
         @JsonProperty("id")
         val id: String?,

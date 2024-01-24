@@ -22,7 +22,7 @@ internal class JwtServiceTest @Autowired constructor(
 
     @BeforeEach
     fun setUp(): Unit = runBlocking {
-        expectedMember = memberRepository.save(MemberEntity(nickname = "nickname", email = "email"))
+        expectedMember = memberRepository.save(MemberEntity(nickname = "nickname"))
     }
 
     @AfterEach

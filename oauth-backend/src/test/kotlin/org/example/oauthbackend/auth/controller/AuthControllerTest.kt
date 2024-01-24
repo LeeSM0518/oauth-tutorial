@@ -31,7 +31,7 @@ internal class AuthControllerTest @Autowired constructor(
 
     @BeforeEach
     fun setUp(): Unit = runBlocking {
-        expectedMember = memberRepository.save(MemberEntity(email = "email", nickname = "nickname"))
+        expectedMember = memberRepository.save(MemberEntity(nickname = "nickname"))
     }
 
     @AfterEach
