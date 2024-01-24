@@ -9,7 +9,7 @@ const router = createRouter({
             component: import("@/pages/Home.vue")
         },
         {
-            path: '/naver/login',
+            path: '/login/naver',
             name: 'naver',
             component: import("@/pages/NaverLogin.vue")
         },
