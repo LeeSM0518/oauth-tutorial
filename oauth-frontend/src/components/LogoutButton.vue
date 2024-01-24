@@ -1,5 +1,5 @@
 <template>
-  <v-btn @click="logout" color="gray">로그아웃</v-btn>
+  <v-btn @click="logout" color="warning">로그아웃</v-btn>
 </template>
 
 <script setup lang="ts">
