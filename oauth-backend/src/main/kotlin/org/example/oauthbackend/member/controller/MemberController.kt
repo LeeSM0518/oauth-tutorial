@@ -22,7 +22,7 @@ class MemberController(
     ): SignUpResponse {
         val member = memberService.signUp(request)
         return SignUpResponse(
-            memberId = member.id!!,
+            memberId = member.id,
             nickname = member.nickname,
             email = member.email
         )
