@@ -3,6 +3,7 @@ package org.example.oauthbackend.member.service
 import org.example.oauthbackend.member.dto.SignUpRequest
 import org.example.oauthbackend.auth.exception.DuplicateEmailException
 import org.example.oauthbackend.auth.exception.DuplicateNicknameException
+import org.example.oauthbackend.auth.exception.MEMBER_NOT_FOUND_BY_EMAIL_EXCEPTION
 import org.example.oauthbackend.auth.exception.MemberNotFoundByEmailException
 import org.example.oauthbackend.member.domain.Member
 import org.example.oauthbackend.member.domain.Member.Companion.toDomain
@@ -27,7 +28,7 @@ class MemberService(
         memberRepository
             .findByEmail(email)
             ?.toDomain()
-            ?: throw MemberNotFoundByEmailException()
+            ?: throw MemberNotFoundByEmailException("{\"email\":\"${email}\"}")
 
     private suspend fun validateRequest(request: SignUpRequest) {
         memberRepository

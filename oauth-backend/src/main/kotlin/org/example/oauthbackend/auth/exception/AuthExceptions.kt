@@ -44,7 +44,7 @@ class DuplicateNicknameException : ServerException(DUPLICATE_NICKNAME_EXCEPTION)
 class DuplicateEmailException : ServerException(DUPLICATE_EMAIL_EXCEPTION)
 
 @ResponseStatus(code = HttpStatus.NOT_FOUND)
-class MemberNotFoundByEmailException : ServerException(MEMBER_NOT_FOUND_BY_EMAIL_EXCEPTION)
+class MemberNotFoundByEmailException(message: String) : ServerException(message)
 
 @ResponseStatus(code = HttpStatus.UNAUTHORIZED)
 class OauthLoginFailException(reason: String) : ServerException(reason)
