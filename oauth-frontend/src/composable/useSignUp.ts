@@ -3,6 +3,7 @@ import { reactive, ref } from 'vue'
 import { useRouter } from 'vue-router'
 import { useOauthInfoStore } from '@/stores/oauth-info'
 import { AxiosError } from 'axios'
+import { OauthType } from '@/controller/auth-controller'
 
 export function useSignUp() {
   const router = useRouter()
@@ -12,7 +13,7 @@ export function useSignUp() {
   const valid = ref(false)
   const formRef = ref(null)
   const signUpFailMessage = reactive({ message: '' })
-  const form: SignUpForm = reactive({ email: '', nickname: '' })
+  const form: SignUpForm = reactive({ oauthId: '', nickname: '', oauthType: OauthType.NAVER })
   const rules = ref({
     required: (v: string) => !!v || '닉네임이 반드시 필요합니다'
   })
@@ -23,12 +24,13 @@ export function useSignUp() {
     router.push({ path: '/' })
   }
 
-  function setEmail() {
+  function setOauthId() {
     if (!oauthInfo) {
       reportError('이메일 정보가 존재하지 않습니다.')
       routeHome()
     } else {
-      form.email = oauthInfo.email
+      form.oauthId = oauthInfo.oauthId
+      form.oauthType = oauthInfo.oauthType
     }
   }
 
@@ -50,7 +52,7 @@ export function useSignUp() {
     form,
     rules,
     routeHome,
-    setEmail,
+    setOauthId,
     signUp,
     signUpFailMessage,
     isFail
@@ -58,6 +60,7 @@ export function useSignUp() {
 }
 
 export interface SignUpForm {
-  email: string
+  oauthId: string
   nickname: string
+  oauthType: OauthType
 }

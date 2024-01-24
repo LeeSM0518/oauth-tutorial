@@ -2,6 +2,7 @@ import { type AxiosInstance, type AxiosResponse } from 'axios'
 import { createApi } from '.'
 import type { Member } from '@/domain/member'
 import type { TokenGroup } from '@/domain/token-group'
+import type { OauthType } from '@/controller/auth-controller'
 
 const BACKEND_MEMBER_URL = import.meta.env.VITE_BACKEND_MEMBER_URL
 
@@ -15,8 +16,9 @@ export class MemberApi {
 }
 
 export interface SignUpRequest {
-  email: string
+  oauthId: string
   nickname: string
+  oauthType: OauthType
 }
 
 export interface SignUpResponse {

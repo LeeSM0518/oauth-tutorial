@@ -1,3 +1,6 @@
+import type { OauthType } from "@/controller/auth-controller"
+
 export interface OauthInfo {
-  email: string
+  oauthId: string
+  oauthType: OauthType
 }

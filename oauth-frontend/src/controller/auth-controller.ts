@@ -20,8 +20,8 @@ export class AuthController {
     } catch (error) {
       if (error instanceof AxiosError && error?.response?.data.status == 404) {
         const reason: ErrorReason = JSON.parse(error.response.data.reason)
-        if (!reason.email) throw error
-        updateOauthInfo({ email: reason.email })
+        if (!reason.oauthId) throw error
+        updateOauthInfo({ oauthId: reason.oauthId, oauthType: type })
       }
       throw error
     }
@@ -42,12 +42,10 @@ export class AuthController {
   }
 }
 
-export type Email = string
-
 export enum OauthType {
   NAVER
 }
 
 interface ErrorReason {
-  email?: string
+    oauthId?: string
 }

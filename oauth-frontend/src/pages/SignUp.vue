@@ -9,13 +9,6 @@
       </v-toolbar>
       <v-form ref="formRef" v-model="valid" class="pa-4 pt-6">
         <v-text-field
-          v-model="form.email"
-          label="이메일"
-          required
-          disabled
-          :rules="[rules.required]"
-        ></v-text-field>
-        <v-text-field
           v-model="form.nickname"
           label="닉네임"
           required
@@ -35,10 +28,10 @@
 import { onMounted } from 'vue'
 import { useSignUp } from '@/composable/useSignUp'
 
-const { valid, formRef, form, rules, routeHome, setEmail, signUp, signUpFailMessage, isFail } =
+const { valid, formRef, form, rules, routeHome, setOauthId, signUp, signUpFailMessage, isFail } =
   useSignUp()
 
 onMounted(async () => {
-  setEmail()
+  setOauthId()
 })
 </script>
