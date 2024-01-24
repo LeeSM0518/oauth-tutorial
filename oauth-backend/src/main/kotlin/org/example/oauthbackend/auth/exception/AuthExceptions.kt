@@ -13,7 +13,6 @@ const val INVALID_REFRESH_TOKEN_EXCEPTION = "잘못된 리프래시 토큰입니
 const val NOT_FOUND_REFRESH_TOKEN_EXCEPTION = "존재하지 않는 리프래시 토큰입니다."
 const val DUPLICATE_NICKNAME_EXCEPTION = "닉네임이 이미 존재합니다."
 const val DUPLICATE_EMAIL_EXCEPTION = "이메일이 이미 존재합니다."
-const val MEMBER_NOT_FOUND_BY_EMAIL_EXCEPTION = "회원이 존재하지 않습니다."
 const val NAVER_OAUTH_LOGIN_FAIL_EXCEPTION = "네이버 OAuth 인증을 실패했습니다."
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
