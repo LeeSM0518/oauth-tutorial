@@ -3,6 +3,7 @@ package org.example.oauthbackend.mebmer.controller
 import io.netty.handler.codec.http.HttpResponseStatus.CONFLICT
 import kotlinx.coroutines.runBlocking
 import org.assertj.core.api.Assertions.assertThat
+import org.example.oauthbackend.auth.service.JwtService
 import org.example.oauthbackend.member.dto.SignUpRequest
 import org.example.oauthbackend.member.dto.SignUpResponse
 import org.example.oauthbackend.config.IntegrationTest
@@ -20,6 +21,7 @@ import org.springframework.test.web.reactive.server.expectBody
 internal class MemberControllerTest @Autowired constructor(
     private val webTestClient: WebTestClient,
     private val memberRepository: MemberRepository,
+    private val jwtService: JwtService,
 ) {
 
     lateinit var expectedMember: MemberEntity
@@ -53,8 +55,10 @@ internal class MemberControllerTest @Autowired constructor(
             .returnResult()
             .responseBody!!
 
-        assertThat(response.email).isEqualTo(request.email)
-        assertThat(response.nickname).isEqualTo(request.nickname)
+        assertThat(response.member.email).isEqualTo(request.email)
+        assertThat(response.member.nickname).isEqualTo(request.nickname)
+        assertThat(jwtService.validateAccessToken(response.tokenGroup.accessToken).memberId).isEqualTo(response.member.id)
+        assertThat(jwtService.validateAccessToken(response.tokenGroup.refreshToken).memberId).isEqualTo(response.member.id)
     }
 
     @Test
