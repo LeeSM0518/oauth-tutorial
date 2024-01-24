@@ -2,39 +2,43 @@
   <v-row justify="center" :align="'center'">
     <v-card width="400">
       <v-toolbar color="primary" cards dark flat>
-        <v-btn icon>
+        <v-btn icon @click="routeHome">
           <v-icon>mdi-arrow-left</v-icon>
         </v-btn>
-        <v-card-title class="text-h6 font-weight-regular">
-          Sign up
-        </v-card-title>
+        <v-card-title class="text-h6 font-weight-regular"> 회원가입 </v-card-title>
       </v-toolbar>
-      <v-form v-model="valid">
+      <v-form ref="formRef" v-model="valid" class="pa-4 pt-6">
         <v-text-field
           v-model="form.email"
-          :counter="10"
-          label="Email"
+          label="이메일"
           required
-          hide-details
+          disabled
+          :rules="[rules.required]"
         ></v-text-field>
+        <v-text-field
+          v-model="form.nickname"
+          label="닉네임"
+          required
+          :rules="[rules.required]"
+        ></v-text-field>
+        <v-divider></v-divider>
+        <v-card-actions>
+          <v-alert v-if="isFail" color="error" :text="signUpFailMessage.message"></v-alert>
+          <v-btn :disabled="!form.nickname" @click="signUp"> 완료 </v-btn>
+        </v-card-actions>
       </v-form>
     </v-card>
   </v-row>
 </template>
 
 <script setup lang="ts">
-import { ref, reactive } from 'vue'
-import { useMemberStore } from '@/stores/member'
-const { member } = useMemberStore()
+import { onMounted } from 'vue'
+import { useSignUp } from '@/composable/useSignUp'
 
-interface SignUpForm {
-  email: string
-  nickname: string
-}
+const { valid, formRef, form, rules, routeHome, setEmail, signUp, signUpFailMessage, isFail } =
+  useSignUp()
 
-const valid = ref(false)
-const form: SignUpForm = reactive({
-  email: member != null ? member.email : '',
-  nickname: ''
+onMounted(async () => {
+  setEmail()
 })
 </script>

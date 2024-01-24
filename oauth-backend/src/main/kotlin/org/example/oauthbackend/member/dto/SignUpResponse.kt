@@ -1,9 +1,9 @@
 package org.example.oauthbackend.member.dto
 
-import java.util.UUID
+import org.example.oauthbackend.auth.domain.TokenGroup
+import org.example.oauthbackend.member.domain.Member
 
 data class SignUpResponse(
-    val memberId: UUID,
-    val nickname: String,
-    val email: String
+    val member: Member,
+    val tokenGroup: TokenGroup,
 )
