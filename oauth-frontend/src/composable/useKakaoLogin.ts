@@ -2,26 +2,24 @@ import { useRoute, useRouter } from 'vue-router'
 import { AuthController, OauthType } from '@/controller/auth-controller'
 import { AxiosError } from 'axios'
 
-const NAVER_ENV = {
-  NAVER_LOGIN_API_URL: import.meta.env.VITE_NAVER_LOGIN_API_URL,
-  NAVER_CLIENT_ID: import.meta.env.VITE_NAVER_CLIENT_ID,
-  NAVER_STATE: import.meta.env.VITE_NAVER_STATE,
-  NAVER_REDIRECT_URL: import.meta.env.VITE_NAVER_REDIRECT_URL
+const KAKAO_ENV = {
+  KAKAO_LOGIN_API_URL: import.meta.env.VITE_KAKAO_LOGIN_API_URL,
+  KAKAO_CLIENT_ID: import.meta.env.VITE_KAKAO_CLIENT_ID,
+  KAKAO_REDIRECT_URL: import.meta.env.VITE_KAKAO_REDIRECT_URL
 }
 
 const loginLink =
-  `${NAVER_ENV.NAVER_LOGIN_API_URL}` +
+  `${KAKAO_ENV.KAKAO_LOGIN_API_URL}` +
   `?response_type=code&` +
-  `client_id=${NAVER_ENV.NAVER_CLIENT_ID}&` +
-  `redirect_uri=${NAVER_ENV.NAVER_REDIRECT_URL}&` +
-  `state=${NAVER_ENV.NAVER_STATE}`
+  `client_id=${KAKAO_ENV.KAKAO_CLIENT_ID}&` +
+  `redirect_uri=${KAKAO_ENV.KAKAO_REDIRECT_URL}`
 
-export function useNaverLogin() {
+export function useKakaoLogin() {
   const router = useRouter()
   const route = useRoute()
   const controller = new AuthController()
 
-  function openNaverLoginPage(): void {
+  function openKakaoLoginPage(): void {
     window.location.href = loginLink
   }
 
@@ -29,16 +27,15 @@ export function useNaverLogin() {
     router.push({ path: '/' })
   }
 
-  async function receiveNaverLoginResponse() {
+  async function receiveKakaoLoginResponse() {
     const response = {
-      state: route.query.state as string,
       code: route.query.code as string,
       error: route.query.error as string
     }
 
     try {
-      if (response.state != null && response.code != null && response.error == null) {
-        await controller.login(response.code, OauthType.NAVER)
+      if (response.code != null && response.error == null) {
+        await controller.login(response.code, OauthType.KAKAO)
         router.push({ path: '/' })
       } else {
         throw Error(response.error)
@@ -54,7 +51,7 @@ export function useNaverLogin() {
 
   return {
     routeHome,
-    openNaverLoginPage,
-    receiveNaverLoginResponse
+    openKakaoLoginPage,
+    receiveKakaoLoginResponse
   }
 }

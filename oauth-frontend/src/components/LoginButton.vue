@@ -15,8 +15,8 @@
             </v-btn>
           </v-col>
           <v-col>
-            <v-btn icon flat @click="openNaverLoginPage">
-              <img width="45" height="45" src="@/assets/naver_login_icon.png" />
+            <v-btn icon flat @click="openKakaoLoginPage">
+              <img width="45" height="45" src="@/assets/kakao_login_icon.png" />
             </v-btn>
           </v-col>
           <v-col>
@@ -33,8 +33,10 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 import { useNaverLogin } from '@/composable/useNaverLogin'
+import { useKakaoLogin } from '@/composable/useKakaoLogin'
 
 const { openNaverLoginPage } = useNaverLogin()
+const { openKakaoLoginPage } = useKakaoLogin()
 
 const dialog = ref(false)
 </script>
