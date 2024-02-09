@@ -1,4 +1,7 @@
 # oauth-tutorial
+
+[![Hits](https://hits.seeyoufarm.com/api/count/incr/badge.svg?url=https%3A%2F%2Fgithub.com%2FLeeSM0518%2Foauth-tutorial%2Fhit-counter&count_bg=%2379C83D&title_bg=%23555555&icon=&icon_color=%23E7E7E7&title=hits&edge_flat=false)](https://hits.seeyoufarm.com)
+
 네이버/카카오/구글 로그인을 연동한 튜토리얼 프로젝트입니다.
 
 <br/>
