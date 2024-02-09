@@ -19,7 +19,7 @@ naver:
   profileUrl: /v1/nid/me
   clientId:
   clientSecret:
-  state:
+  state: test
 
 kakao:
   oauthHost: https://kauth.kakao.com
