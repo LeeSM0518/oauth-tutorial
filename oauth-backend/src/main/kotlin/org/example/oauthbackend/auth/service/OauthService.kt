@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service
 class OauthService(
     private val naverOauthService: NaverOauthService,
     private val kakaoOauthService: KakaoOauthService,
+    private val googleOauthService: GoogleOauthService
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
@@ -24,6 +25,11 @@ class OauthService(
                 OauthType.KAKAO -> OauthInfo(
                     oauthId = kakaoOauthService.getOauthId(request),
                     oauthType = OauthType.KAKAO
+                )
+
+                OauthType.GOOGLE -> OauthInfo(
+                    oauthId = googleOauthService.getOauthId(request),
+                    oauthType = OauthType.GOOGLE
                 )
             }
         }.getOrElse { exception ->

@@ -1,5 +1,5 @@
 package org.example.oauthbackend.auth.domain
 
 enum class OauthType {
-    NAVER, KAKAO
+    NAVER, KAKAO, GOOGLE
 }

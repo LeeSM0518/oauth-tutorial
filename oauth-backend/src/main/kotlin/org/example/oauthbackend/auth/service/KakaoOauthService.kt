@@ -30,7 +30,7 @@ class KakaoOauthService(
                 GetKakaoTokenRequest(
                     grantType = OauthGrantType.AUTHORIZATION_CODE.value,
                     clientId = kakaoOauthProperties.clientId,
-                    redirectUri = kakaoOauthProperties.redirectUrl,
+                    redirectUri = kakaoOauthProperties.redirectUri,
                     code = request.authorizationCode,
                 ).toString()
             )
