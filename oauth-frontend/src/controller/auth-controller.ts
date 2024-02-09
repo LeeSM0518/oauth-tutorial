@@ -43,7 +43,7 @@ export class AuthController {
 }
 
 export enum OauthType {
-  NAVER, KAKAO
+  NAVER, KAKAO, GOOGLE
 }
 
 interface ErrorReason {

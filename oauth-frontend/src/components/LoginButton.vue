@@ -20,8 +20,8 @@
             </v-btn>
           </v-col>
           <v-col>
-            <v-btn icon flat @click="openNaverLoginPage">
-              <img width="45" height="45" src="@/assets/naver_login_icon.png" />
+            <v-btn icon flat @click="openGoogleLoginPage">
+              <img width="45" height="45" src="@/assets/google_login_icon.png" />
             </v-btn>
           </v-col>
         </v-row>
@@ -34,9 +34,11 @@
 import { ref } from 'vue'
 import { useNaverLogin } from '@/composable/useNaverLogin'
 import { useKakaoLogin } from '@/composable/useKakaoLogin'
+import { useGoogleLogin } from '@/composable/useGoogleLogin'
 
 const { openNaverLoginPage } = useNaverLogin()
 const { openKakaoLoginPage } = useKakaoLogin()
+const { openGoogleLoginPage } = useGoogleLogin()
 
 const dialog = ref(false)
 </script>

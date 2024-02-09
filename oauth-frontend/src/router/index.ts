@@ -19,6 +19,11 @@ const router = createRouter({
       component: import('@/pages/KakaoLogin.vue')
     },
     {
+      path: '/login/google',
+      name: 'google',
+      component: import('@/pages/GoogleLogin.vue')
+    },
+    {
       path: '/signup',
       name: 'signup',
       component: import('@/pages/SignUp.vue')

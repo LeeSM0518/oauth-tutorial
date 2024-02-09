@@ -11,4 +11,7 @@ interface ImportMetaEnv {
     VITE_KAKAO_LOGIN_API_URL: string,
     VITE_KAKAO_CLIENT_ID: string,
     VITE_KAKAO_REDIRECT_URL: string,
+    VITE_GOOGLE_LOGIN_API_URL: string,
+    VITE_GOOGLE_CLIENT_ID: string,
+    VITE_GOOGLE_REDIRECT_URL: string
 }
