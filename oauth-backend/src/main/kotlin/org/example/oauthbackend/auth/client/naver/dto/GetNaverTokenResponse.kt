@@ -2,7 +2,7 @@ package org.example.oauthbackend.auth.client.naver.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class GetTokenResponse(
+data class GetNaverTokenResponse(
     @JsonProperty("access_token")
     private val accessToken: String?,
     @JsonProperty("refresh_token")

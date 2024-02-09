@@ -9,13 +9,22 @@ import org.springframework.stereotype.Service
 @Service
 class OauthService(
     private val naverOauthService: NaverOauthService,
+    private val kakaoOauthService: KakaoOauthService,
 ) {
     private val logger = LoggerFactory.getLogger(this::class.java)
 
     suspend fun getOauthInfo(request: LoginRequest): OauthInfo =
         runCatching {
             when (request.oauthType) {
-                OauthType.NAVER -> OauthInfo(oauthId = naverOauthService.getOauthId(request), oauthType = OauthType.NAVER)
+                OauthType.NAVER -> OauthInfo(
+                    oauthId = naverOauthService.getOauthId(request),
+                    oauthType = OauthType.NAVER
+                )
+
+                OauthType.KAKAO -> OauthInfo(
+                    oauthId = kakaoOauthService.getOauthId(request),
+                    oauthType = OauthType.KAKAO
+                )
             }
         }.getOrElse { exception ->
             logger.error("OAuth 인증을 실패했습니다.")

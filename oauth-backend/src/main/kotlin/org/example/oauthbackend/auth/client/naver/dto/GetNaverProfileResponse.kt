@@ -2,7 +2,7 @@ package org.example.oauthbackend.auth.client.naver.dto
 
 import com.fasterxml.jackson.annotation.JsonProperty
 
-data class GetProfileResponse(
+data class GetNaverProfileResponse(
     @JsonProperty("resultcode")
     val resultCode: String,
     @JsonProperty("message")

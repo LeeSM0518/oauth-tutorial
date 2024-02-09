@@ -14,6 +14,7 @@ const val NOT_FOUND_REFRESH_TOKEN_EXCEPTION = "존재하지 않는 리프래시 
 const val DUPLICATE_NICKNAME_EXCEPTION = "닉네임이 이미 존재합니다."
 const val DUPLICATE_EMAIL_EXCEPTION = "이미 존재하는 회원입니다."
 const val NAVER_OAUTH_LOGIN_FAIL_EXCEPTION = "네이버 OAuth 인증을 실패했습니다."
+const val KAKAO_OAUTH_LOGIN_FAIL_EXCEPTION = "카카오 OAuth 인증을 실패했습니다."
 
 @ResponseStatus(code = HttpStatus.INTERNAL_SERVER_ERROR)
 class CreateAccessTokenException : ServerException(CREATE_ACCESS_TOKEN_EXCEPTION)

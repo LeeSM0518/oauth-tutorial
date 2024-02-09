@@ -46,7 +46,7 @@ dependencies {
     runtimeOnly("io.jsonwebtoken:jjwt-jackson:$jwtVersion")
 
     // test container
-    val testContainerVersion = "1.17.3"
+    val testContainerVersion = "1.19.4"
     testImplementation("org.testcontainers:testcontainers:$testContainerVersion")
     testImplementation("org.testcontainers:r2dbc:$testContainerVersion")
     testImplementation("org.testcontainers:postgresql:$testContainerVersion")
