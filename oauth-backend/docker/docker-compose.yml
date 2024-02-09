@@ -1,5 +1,5 @@
 services:
-  database:
+  oauth-database:
     image: postgres:16
     container_name: oauth-database
     environment:
@@ -10,3 +10,13 @@ services:
       - ./data:/var/lib/postgresql/data
     ports:
       - "15432:5432"
+  oauth-backend:
+    build:
+      context: .
+    environment:
+      - DATABASE_URL=r2dbc:postgresql://oauth-database:5432/oauthdb
+    container_name: oauth-backend
+    depends_on:
+      - oauth-database
+    ports:
+      - "8081:8081"
