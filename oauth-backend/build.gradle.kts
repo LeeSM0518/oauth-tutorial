@@ -81,6 +81,7 @@ tasks.withType<Test> {
 }
 
 tasks.register("copyJar", Copy::class) {
+    dependsOn("bootJar")
     val jarFile = "oauth-backend-1.0.0.jar"
     from("build/libs")
     into(file("docker"))
