@@ -8,7 +8,7 @@ spring:
     password: ${DATABASE_PASSWORD:postgres}
 
 jwt:
-  secretKey:
+  secretKey: 8n3MrjYcZkADRLPmj6BZnFTLmAhCrcga6sD9eCASXABT5fp3Xe
   accessTokenExpirationHour: 1
   refreshTokenExpirationHour: 720
 
