@@ -22,7 +22,5 @@ interface KakaoOauthClient {
         consumes = [MediaType.APPLICATION_FORM_URLENCODED_VALUE],
         headers = ["Content-Type: ${MediaType.APPLICATION_FORM_URLENCODED_VALUE}"]
     )
-    fun getToken(
-        @RequestBody request: String
-    ): GetKakaoTokenResponse
+    fun getToken(request: String): GetKakaoTokenResponse
 }
