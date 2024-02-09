@@ -164,3 +164,30 @@
 <br/>
 
 # 구글 로그인 API 사용 방법
+1. [구글 API 페이지](https://console.cloud.google.com/apis/dashboard)로 이동
+   <img width="1024" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/5a65abfb-b4e0-4874-a37e-04533cf120ca">
+   
+2. 프로젝트 만들기 수행
+   <img width="1024" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/42baea10-895a-4568-a7c1-eaa251337c96">
+   <img width="587" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/169a6db5-a18d-4b7b-89da-03ad5909787c">
+   
+3. OAuth 동의 화면 만들기 수행
+   <img width="871" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/f9d2375b-a3be-4bfa-8113-837fbcabe0e4">
+   <img width="1024" alt="스크린샷 2024-02-09 오후 8 29 04" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/ee10df86-337d-4303-8481-2b5971e54178">
+   <img width="976" alt="스크린샷 2024-02-09 오후 8 29 38" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/b583022f-47b5-479e-8cfd-c206a4e1cce3">
+   <img width="932" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/20fb5619-599b-44c8-80ec-f7683fb49728">
+   <img width="976" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/3519c371-6913-4d94-b8c0-767daa653395">
+   <img width="839" alt="스크린샷 2024-02-09 오후 8 31 55" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/9e96c403-05bf-4b1a-868a-2a0172010037">
+
+4. 사용자 인증 정보 만들기 수행
+   <img width="837" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/a25bb69a-7c32-417d-9ad2-de42cef4066c">
+   <img width="826" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/68738bd7-3307-4fca-8b24-8cb7914d457b">
+   <img width="932" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/5aed358f-de38-47b9-b7ec-850e14e15592">
+
+5. `Client ID` 와 `Client Secret` 을 복사하여 백엔드 및 프론트엔드 환경구성에 사용
+   <img width="932" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/bb85f605-59df-4f38-b291-7e3d138b85c0">
+
+
+
+
+
