@@ -20,3 +20,20 @@ naver:
   clientId:
   clientSecret:
   state:
+
+kakao:
+  oauthHost: https://kauth.kakao.com
+  profileHost: https://kapi.kakao.com
+  tokenUrl: /oauth/token
+  profileUrl: /v2/user/me
+  clientId:
+  redirectUri: http://localhost:8080/login/kakao
+
+google:
+  oauthHost: https://oauth2.googleapis.com
+  profileHost: https://www.googleapis.com
+  tokenUrl: /token
+  profileUrl: /userinfo/v2/me
+  clientId:
+  clientSecret:
+  redirectUri: http://localhost:8080/login/google
