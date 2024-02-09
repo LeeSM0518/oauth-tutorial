@@ -10,7 +10,7 @@ plugins {
 val springCloudVersion by extra("2023.0.0")
 
 group = "org.example"
-version = "0.0.1-SNAPSHOT"
+version = "1.0.0"
 
 java {
     sourceCompatibility = JavaVersion.VERSION_17
@@ -78,4 +78,15 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.register("copyJar", Copy::class) {
+    val jarFile = "oauth-backend-1.0.0.jar"
+    from("build/libs")
+    into(file("docker"))
+    include(jarFile)
+}
+
+tasks.named("build") {
+    dependsOn("copyJar")
 }
