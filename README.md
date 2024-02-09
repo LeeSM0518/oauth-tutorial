@@ -185,9 +185,4 @@
    <img width="932" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/5aed358f-de38-47b9-b7ec-850e14e15592">
 
 5. `Client ID` 와 `Client Secret` 을 복사하여 백엔드 및 프론트엔드 환경구성에 사용
-   <img width="932" alt="image" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/bb85f605-59df-4f38-b291-7e3d138b85c0">
-
-
-
-
-
+   <img width="534" alt="스크린샷 2024-02-09 오후 8 37 49" src="https://github.com/LeeSM0518/oauth-tutorial/assets/43431081/d0d3783b-c293-40af-b398-87f22100a4df">
